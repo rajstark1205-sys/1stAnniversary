@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { anniversaryConfig, OpenWhenCard } from '../data/anniversaryData';
-import { Heart, Sparkles, Mail, Star, Smile, Sun, Moon, Gift } from 'lucide-react';
+import { Heart, Sparkles, Mail, Gift } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export const LoveSurprises: React.FC = () => {
@@ -34,17 +34,6 @@ export const LoveSurprises: React.FC = () => {
     } else {
       setLoveMessage("Keep clicking! My love keeps expanding! 💕");
     }
-  };
-
-  // D. A Little Wish state
-  const [wishText, setWishText] = useState("");
-  const [wishMade, setWishMade] = useState(false);
-
-  const handleMakeWish = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!wishText.trim()) return;
-    setWishMade(true);
-    confetti({ particleCount: 70, spread: 80, colors: ['#fbbf24', '#f43f5e', '#ffffff'] });
   };
 
   return (
@@ -175,52 +164,6 @@ export const LoveSurprises: React.FC = () => {
                     Close Letter ❤️
                   </button>
                 </div>
-              </div>
-            )}
-          </div>
-
-          {/* D. A Little Wish Card */}
-          <div className="bg-white rounded-3xl p-8 shadow-lg border border-rose-100 lg:col-span-2">
-            <div className="flex items-center gap-2 text-rose-600 font-serif font-bold text-lg mb-2">
-              <Star className="w-5 h-5 text-amber-500 fill-amber-400" />
-              <span>A Digital Wishing Star</span>
-            </div>
-            <p className="text-gray-600 text-sm mb-6">
-              Make a wish for our future and send it up to the stars.
-            </p>
-
-            {!wishMade ? (
-              <form onSubmit={handleMakeWish} className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="text"
-                  value={wishText}
-                  onChange={(e) => setWishText(e.target.value)}
-                  placeholder="Type your secret wish here..."
-                  className="flex-1 px-5 py-3.5 rounded-full border border-gray-200 focus:outline-none focus:border-rose-400 text-sm bg-gray-50/50"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-white font-medium text-sm shadow-md hover:shadow-lg transition-all"
-                >
-                  Send Wishing Star ⭐
-                </button>
-              </form>
-            ) : (
-              <div className="p-6 rounded-2xl bg-gradient-to-r from-amber-50 to-rose-50 border border-amber-200 text-center animate-fadeIn">
-                <Star className="w-8 h-8 text-amber-500 fill-amber-400 mx-auto mb-3 animate-spin" style={{ animationDuration: '6s' }} />
-                <p className="font-serif text-lg text-rose-900 font-medium mb-1">
-                  "{wishText}"
-                </p>
-                <p className="text-gray-600 text-xs italic">
-                  May all your beautiful wishes come true. And may I always be part of your happiness. ❤️
-                </p>
-                <button
-                  onClick={() => { setWishMade(false); setWishText(""); }}
-                  className="mt-4 text-xs text-rose-600 underline font-medium hover:text-rose-800"
-                >
-                  Make Another Wish
-                </button>
               </div>
             )}
           </div>
